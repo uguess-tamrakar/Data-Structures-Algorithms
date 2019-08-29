@@ -1,0 +1,11 @@
+E:\C#\Data Structures & Algorithms\bin\Debug\netcoreapp2.1\Data Structures & Algorithms.deps.json
+E:\C#\Data Structures & Algorithms\bin\Debug\netcoreapp2.1\Data Structures & Algorithms.runtimeconfig.json
+E:\C#\Data Structures & Algorithms\bin\Debug\netcoreapp2.1\Data Structures & Algorithms.runtimeconfig.dev.json
+E:\C#\Data Structures & Algorithms\bin\Debug\netcoreapp2.1\Data Structures & Algorithms.dll
+E:\C#\Data Structures & Algorithms\bin\Debug\netcoreapp2.1\Data Structures & Algorithms.pdb
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.csprojAssemblyReference.cache
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.csproj.CoreCompileInputs.cache
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.AssemblyInfoInputs.cache
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.AssemblyInfo.cs
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.dll
+E:\C#\Data Structures & Algorithms\obj\Debug\netcoreapp2.1\Data Structures & Algorithms.pdb
