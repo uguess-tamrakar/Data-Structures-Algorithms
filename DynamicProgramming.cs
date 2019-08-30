@@ -172,34 +172,30 @@ namespace Data_Structures___Algorithms
             return dp[s.Length];
         }
 
-        public static int CombinationSum4(int[] nums, int target)
+        public static int UniquePaths(int m, int n)
         {
-            if (nums.Length == 0 || target == 0) return 0;
-            System.Array.Sort(nums);
-
-            int[] dp = new int[target + 1];
-            dp[0] = 1;
-
-            for (int i = 1; i < dp.Length; i++)
+            if (m == 0 && n == 0) return 1;
+            if (m < 2 || n < 2) return 1;
+            else
             {
-                int total = 0;
-                for (int j = 0; j < nums.Length; j++)
+                int[][] dp = new int[m][];
+
+                for (int i = 0; i < m; i++)
                 {
-                    if (nums[j] <= i)
+                    dp[i] = new int[n];
+                    Array.Fill(dp[i], 1);
+                }
+
+                for (int i = 1; i < m; i++)
+                {
+                    for (int j = 1; j < n; j++)
                     {
-                        total += (dp[i - nums[j]]);
-                    }
-                    else
-                    {
-                        break;
+                        dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
                     }
                 }
 
-                dp[i] = total;
+                return dp[m - 1][n - 1];
             }
-
-            return dp.Last();
         }
-  
     }
 }

@@ -6,7 +6,7 @@ namespace Data_Structures___Algorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }

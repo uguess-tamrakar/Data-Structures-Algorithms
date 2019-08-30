@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Data_Structures___Algorithms
 {
@@ -102,7 +103,6 @@ namespace Data_Structures___Algorithms
             return result;
         }
 
-
         private void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
         {
             // if target is 0, we found our combination
@@ -133,5 +133,35 @@ namespace Data_Structures___Algorithms
                 }
             }
         }
+
+        public static int CombinationSum4(int[] nums, int target)
+        {
+            if (nums.Length == 0 || target == 0) return 0;
+            System.Array.Sort(nums);
+
+            int[] dp = new int[target + 1];
+            dp[0] = 1;
+
+            for (int i = 1; i < dp.Length; i++)
+            {
+                int total = 0;
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    if (nums[j] <= i)
+                    {
+                        total += (dp[i - nums[j]]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                dp[i] = total;
+            }
+
+            return dp.Last();
+        }
+
     }
 }
