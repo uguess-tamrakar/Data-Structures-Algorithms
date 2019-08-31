@@ -5,6 +5,20 @@ namespace Data_Structures___Algorithms
 {
     public class Tree
     {
+        private static int sum = 0;
+        public static TreeNode ConvertBST(TreeNode root)
+        {
+            if (root != null) 
+            {
+                ConvertBST(root.right);
+                sum += root.val;
+                root.val = sum;
+                ConvertBST(root.left);
+            }
+
+            return root;
+        }
+
         public static bool IsSameTree(TreeNode p, TreeNode q)
         {
             bool result = false;
@@ -110,12 +124,15 @@ namespace Data_Structures___Algorithms
             return result.ToArray();
         }
 
-        public static TreeNode ConvertArrayToTree(int[] array) {
+        public static TreeNode ConvertArrayToTree(int[] array)
+        {
             return GetTreeNode(array, null, 0);
         }
 
-        private static TreeNode GetTreeNode(int[] array, TreeNode root, int i) {
-            if (i < array.Length) {
+        private static TreeNode GetTreeNode(int[] array, TreeNode root, int i)
+        {
+            if (i < array.Length)
+            {
                 TreeNode temp = new TreeNode(array[i]);
                 root = temp;
                 root.left = GetTreeNode(array, root.left, 2 * i + 1);

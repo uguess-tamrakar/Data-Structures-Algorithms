@@ -6,7 +6,7 @@ namespace Data_Structures___Algorithms
     {
         public static ListNode ReverseList(ListNode head)
         {
-            ListNode result = null;
+            //ListNode result = null;
             ReverseRecursive(head);
             return Reversed;
         }
