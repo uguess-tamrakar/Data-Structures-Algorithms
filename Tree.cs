@@ -5,6 +5,42 @@ namespace Data_Structures___Algorithms
 {
     public class Tree
     {
+        public static TreeNode BuildTree(int[] inorder, int[] postorder)
+        {
+            TreeNode result = null;
+
+            if (inorder.Length > 0 && inorder.Length == postorder.Length)
+            {
+                result = new TreeNode(postorder[postorder.Length - 1]);
+                Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+                nodeStack.Push(result);
+                TreeNode Temp = null;
+
+                for (int i = inorder.Length - 2, j = postorder.Length - 1; i >= 0; i--)
+                {
+                    TreeNode current = new TreeNode(postorder[i]);
+                    while (nodeStack.Count > 0 && nodeStack.Peek().val == inorder[j])
+                    {
+                        Temp = nodeStack.Pop();
+                        j--;
+                    }
+
+                    if (Temp != null)
+                    {
+                        Temp.left = current; Temp = null;
+                    }
+                    else
+                    {
+                        nodeStack.Peek().right = current;
+                    }
+
+                    nodeStack.Push(current);
+                }
+            }
+
+            return result;
+        }
+
         private static int sum = 0;
         public static TreeNode ConvertBST(TreeNode root)
         {

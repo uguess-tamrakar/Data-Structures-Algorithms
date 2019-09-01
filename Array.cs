@@ -5,6 +5,17 @@ namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (n > 0)
+            {
+                foreach (int num in nums2)
+                {
+                    nums1[m++] = num;
+                }
+                Array.Sort(nums1);
+            }
+        }
 
         public static int MaxSubArray(int[] nums)
         {

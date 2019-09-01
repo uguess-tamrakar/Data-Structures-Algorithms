@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Data_Structures___Algorithms
 {
@@ -20,6 +21,29 @@ namespace Data_Structures___Algorithms
             }
 
             return result;
+        }
+
+        public static string[] ReorderLogFiles(string[] logs)
+        {
+            if (logs == null) return null;
+            else if (logs.Length == 0) return new string[0];
+
+            List<string> result = new List<string>();
+
+            List<string> letterLogs = new List<string>();
+            List<string> digitLogs = new List<string>();
+            for (int i = 0; i < logs.Length; i++)
+            {
+                string afterIdentifier = logs[i].Split(' ')[1];
+                if (char.IsDigit(afterIdentifier[0])) digitLogs.Add(logs[i]);
+                else letterLogs.Add(logs[i]);
+            }
+
+            letterLogs = letterLogs.OrderBy(log => log).ToList();
+            result = letterLogs.OrderBy(log => log.Substring(log.IndexOf(' ') + 1)).ToList();
+            result.AddRange(digitLogs);
+
+            return result.ToArray();
         }
     }
 }

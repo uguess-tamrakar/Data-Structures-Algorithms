@@ -6,6 +6,43 @@ namespace Data_Structures___Algorithms
 {
     public class DynamicProgramming
     {
+        private static bool[,] visitedLands;
+
+        public static int NumIslands(char[][] grid) {
+            int result = 0;
+
+            if (grid != null && grid.Length > 0 && grid[0].Length > 0)
+            {
+                visitedLands = new bool[grid.Length, grid[0].Length];
+
+                for (int x = 0; x < grid.Length; x++)
+                {
+                    for (int y = 0; y < grid[x].Length; y++)
+                    {
+                        if (grid[x][y] == '1' && !visitedLands[x, y])
+                        {
+                            VisitAllAdjacentLands(grid, x, y);
+                            result++;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        private static void VisitAllAdjacentLands(char[][] grid, int x, int y)
+        {
+            if (x < 0 || y < 0 || x >= grid.Length || y >=grid[x].Length || grid[x][y] == '0' || visitedLands[x, y]) return;
+            else
+            {
+                visitedLands[x, y] = true;
+                VisitAllAdjacentLands(grid, x - 1, y);
+                VisitAllAdjacentLands(grid, x + 1, y);
+                VisitAllAdjacentLands(grid, x, y - 1);
+                VisitAllAdjacentLands(grid, x, y + 1);
+            }
+        }
+
         public static int Rob(int[] nums)
         {
             if (nums.Length == 0) return 0;
