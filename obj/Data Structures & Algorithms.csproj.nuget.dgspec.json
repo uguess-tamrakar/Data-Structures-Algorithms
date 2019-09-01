@@ -1,32 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#\\Data Structures & Algorithms\\Data Structures & Algorithms.csproj": {}
+    "/Users/uguesstamrakar/Documents/Data Structures and Algorithms/Data Structures & Algorithms.csproj": {}
   },
   "projects": {
-    "E:\\C#\\Data Structures & Algorithms\\Data Structures & Algorithms.csproj": {
+    "/Users/uguesstamrakar/Documents/Data Structures and Algorithms/Data Structures & Algorithms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\Data Structures & Algorithms\\Data Structures & Algorithms.csproj",
+        "projectUniqueName": "/Users/uguesstamrakar/Documents/Data Structures and Algorithms/Data Structures & Algorithms.csproj",
         "projectName": "Data Structures & Algorithms",
-        "projectPath": "E:\\C#\\Data Structures & Algorithms\\Data Structures & Algorithms.csproj",
-        "packagesPath": "C:\\Users\\ugues\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\Data Structures & Algorithms\\obj\\",
+        "projectPath": "/Users/uguesstamrakar/Documents/Data Structures and Algorithms/Data Structures & Algorithms.csproj",
+        "packagesPath": "/Users/uguesstamrakar/.nuget/packages/",
+        "outputPath": "/Users/uguesstamrakar/Documents/Data Structures and Algorithms/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ugues\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/uguesstamrakar/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,6 +40,7 @@
         "netcoreapp2.1": {
           "dependencies": {
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true

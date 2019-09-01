@@ -103,7 +103,7 @@ namespace Data_Structures___Algorithms
             return result;
         }
 
-        private void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
+        private static void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
         {
             // if target is 0, we found our combination
             if (target == 0)
@@ -163,5 +163,44 @@ namespace Data_Structures___Algorithms
             return dp.Last();
         }
 
+        public static IList<IList<int>> ThreeSum(int[] nums)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+
+            if (nums.Length >= 3)
+            {
+                Array.Sort(nums);
+                FindCombination(nums, result, new List<int>(), 0);
+            }
+
+            return result;
+        }
+
+        private static void FindCombination(int[] nums, IList<IList<int>> result, List<int> currentCombination, int index)
+        {
+            for (int i = index; i < nums.Length; i++)
+            {
+                if (i != index && currentCombination.Count == 3)
+                {
+                    if (currentCombination.Count < 3)
+                    {
+                        currentCombination.Add(nums[i]);
+                        FindCombination(nums, result, currentCombination, i + 1);
+                        currentCombination.RemoveAt(currentCombination.Count - 1);
+                    }
+                    else
+                    {
+
+                        int sum = currentCombination[0] + currentCombination[1] + currentCombination[2];
+                        if (sum == 0)
+                        {
+                            result.Add(new List<int>(currentCombination));
+                            break;
+                        }
+                    }
+                }
+                else break;
+            }
+        }
     }
 }

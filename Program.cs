@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Data_Structures___Algorithms
 {
@@ -29,8 +30,10 @@ namespace Data_Structures___Algorithms
             // int[] Array1 = { 1, 2, 3, 0, 0, 0 };
             // int[] Array2 = { 2, 5, 6 };
             // ArraySolution.Merge(Array1, 3, Array2, 3);
-            string[] logs = { "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo" };
-            StringSolution.ReorderLogFiles(logs);
+            // string[] logs = { "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo" };
+            // StringSolution.ReorderLogFiles(logs);
+            int[] arrayNums = { -1, 0, 1, 2, -1, -4 };
+            IList<IList<int>> result = CombinationSum.ThreeSum(arrayNums);
         }
     }
 }
