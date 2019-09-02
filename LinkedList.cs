@@ -4,6 +4,66 @@ namespace Data_Structures___Algorithms
 {
     public class LinkedList
     {
+        // Add two reversed linked lists
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            // ListNode result = new ListNode(0);
+            // ListNode dummy = result;
+            // int carry = 0;
+            // while (l1 != null || l2 != null)
+            // {
+            //     int x = l1 != null ? l1.val : 0;
+            //     int y = l2 != null ? l2.val : 0;
+            //     int sum = carry + x + y;
+            //     carry = sum / 10;
+            //     dummy.next = new ListNode(sum % 10);
+            //     dummy = dummy.next;
+            //     if (l1 != null) l1 = l1.next;
+            //     if (l2 != null) l2 = l2.next;
+            // }
+
+            // if (carry > 0) dummy.next = new ListNode(carry);
+            // return result.next;
+            return AddTwoNumbersRecursive(l1, l2, 0);
+        }
+
+        private ListNode AddTwoNumbersRecursive(ListNode l1, ListNode l2, int carry)
+        {
+            int sum = carry + l1.val + l2.val;
+            carry = sum / 10;
+            ListNode result = new ListNode(sum % 10);
+
+            if (l1.next != null || l2.next != null)
+            {
+                l1 = l1.next == null ? new ListNode(0) : l1.next;
+                l2 = l2.next == null ? new ListNode(0) : l2.next;
+                result.next = AddTwoNumbersRecursive(l1, l2, carry);
+            }
+            else
+            {
+                if (carry > 0) result.next = new ListNode(carry);
+            }
+
+            return result;
+        }
+
+        public static ListNode ListNodeFromArray(int[] array)
+        {
+            ListNode result = new ListNode(0);
+            ListNode current;
+            ListNode temp;
+            int index = 0;
+            while (index < array.Length)
+            {
+                current = new ListNode(array[index]);
+                temp = result;
+                while (temp.next != null) temp = temp.next;
+                temp.next = current;
+                index++;
+            }
+            return result.next;
+        }
+
         public static ListNode ReverseList(ListNode head)
         {
             //ListNode result = null;

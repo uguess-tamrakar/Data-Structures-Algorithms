@@ -5,6 +5,34 @@ namespace Data_Structures___Algorithms
 {
     public class Tree
     {
+        public IList<IList<int>> PathSum(TreeNode root, int sum)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+            FindPaths(root, new List<int>(), result, sum);
+            return result;
+        }
+
+        private void FindPaths(TreeNode root, List<int> current, IList<IList<int>> result, int remaining)
+        {
+            if (root == null) return;
+
+            current.Add(root.val);
+            if (root.val == remaining && root.left == null && root.right == null){
+                result.Add(current);
+                return;
+            }
+
+            FindPaths(root.left, new List<int>(current), result, remaining - root.val);
+            FindPaths(root.right, new List<int>(current), result, remaining - root.val);
+        }
+
+        public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+        {
+            if (p.val < root.val && q.val < root.val) return LowestCommonAncestor(root.left, p, q);
+            else if (p.val > root.val && q.val > root.val) return LowestCommonAncestor(root.right, p, q);
+            else return root;
+        }
+
         public static TreeNode BuildTree(int[] inorder, int[] postorder)
         {
             TreeNode result = null;

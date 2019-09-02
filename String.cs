@@ -6,7 +6,53 @@ namespace Data_Structures___Algorithms
 {
     public class StringSolution
     {
-        public int FirstUniqueChar(String s) {
+        public string LongestPalindrome(string s) 
+        {
+            if (string.IsNullOrEmpty(s)) return string.Empty;
+            int start = 0;
+            int end = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                int length1 = ExpandFromCenter(s, i, i);
+                int length2 = ExpandFromCenter(s, i, i + 1);
+                int length = Math.Max(length1, length2);
+
+                if (length > end - start) {
+                    start = i - (length - 1) / 2;
+                    end = i + length / 2;
+                }
+            }
+
+            return s.Substring(start, end + 1);
+        }
+
+        private int ExpandFromCenter(string s, int left, int right)
+        {
+            while (left >=0 && right < s.Length && s[left] == s[right]){
+                left--;
+                right++;
+            }
+            return right - left - 1;
+        }
+
+        public bool JudgeCircle(string moves)
+        {
+            int x = 0;
+            int y = 0;
+            
+            for (int i = 0; i < moves.Length; i++)
+            {
+                if (moves[i] == 'U' || moves[i] == 'u') y++;
+                else if (moves[i] == 'D' || moves[i] == 'd') y--;
+                else if (moves[i] == 'L' || moves[i] == 'l') x--;
+                else if (moves[i] == 'R' || moves[i] == 'r') x++;
+            }
+
+            return (x == 0 && y == 0);
+        }
+
+        public int FirstUniqueChar(String s)
+        {
             if (string.IsNullOrEmpty(s)) return -1;
             Dictionary<char, int> dict = new Dictionary<char, int>();
             for (int i = 0; i < s.Length; i++)
@@ -15,7 +61,14 @@ namespace Data_Structures___Algorithms
                 else dict[s[i]] = -1;
             }
 
-            return dict.First(pair => pair.Value != -1).Value;
+            foreach (KeyValuePair<char, int> pair in dict)
+            {
+                if (pair.Value != -1)
+                {
+                    return pair.Key;
+                }
+            }
+            return -1;
         }
 
         public static int LengthOfLongestSubstring(string s)
@@ -29,7 +82,7 @@ namespace Data_Structures___Algorithms
                 if (dict.ContainsKey(s[i])) j = Math.Max(dict[s[i]], j);
                 result = Math.Max(result, i - j + 1);
                 if (!dict.ContainsKey(s[i])) dict.Add(s[i], i + 1);
-                else dict[s[i]] = j + 1;
+                else dict[s[i]] = i + 1;
             }
 
             return result;

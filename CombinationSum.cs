@@ -96,11 +96,40 @@ namespace Data_Structures___Algorithms
 
         public IList<IList<int>> CombinationSum2(int[] candidates, int target)
         {
+            // IList<IList<int>> result = new List<IList<int>>();
+            // // sort the candidates such that 
+            // System.Array.Sort(candidates);
+            // BackTrack(candidates, result, new List<int>(), 0, target);
+            // return result;
             IList<IList<int>> result = new List<IList<int>>();
-            // sort the candidates such that 
-            System.Array.Sort(candidates);
-            BackTrack(candidates, result, new List<int>(), 0, target);
+            // Sort the candidates to make it easier to keep track of target
+            Array.Sort(candidates);
+            FindCombinations(new List<int>(), 0, target, result, candidates);
             return result;
+        }
+
+        private void FindCombinations(List<int> current, int index, int remaining, IList<IList<int>> result, int[] candidates)
+        {
+            // if the remaining is 0, then we have reached the target sum
+            if (remaining == 0)
+            {
+                result.Add(new List<int>(current));
+                return;
+            }
+            // if remaining is negative then current combination passed the target so return
+            else if (remaining < 0) return;
+
+            // otherwise loop through candidates and build combination recursively.
+            for (int i = index; i < candidates.Length; i++)
+            {
+                if (i == index || candidates[i] != candidates[i - 1])
+                {
+                    current.Add(candidates[i]);
+                    // call recursive with remaining = remaining - current candidate
+                    FindCombinations(current, i, remaining - candidates[i], result, candidates);
+                    current.RemoveAt(current.Count - 1);
+                }
+            }
         }
 
         private void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
@@ -111,25 +140,16 @@ namespace Data_Structures___Algorithms
                 result.Add(new List<int>(currentCombination));
                 return;
             }
+            else if (target < 0) return;
 
             // loop through candidates and find combination that sums to target
             for (int i = startIndex; i < candidates.Length; i++)
             {
                 if (i == startIndex || candidates[i] != candidates[i - 1])
                 {
-                    int newTarget = target - candidates[i];
-                    // if new target is still positive, recursively continue to find other combinations
-                    if (newTarget >= 0)
-                    {
-                        currentCombination.Add(candidates[i]);
-                        BackTrack(candidates, result, currentCombination, i + 1, newTarget);
-                        currentCombination.RemoveAt(currentCombination.Count - 1);
-                    }
-                    // else combination sum is already greater than target, so break
-                    else
-                    {
-                        break;
-                    }
+                    currentCombination.Add(candidates[i]);
+                    BackTrack(candidates, result, currentCombination, i, target - candidates[i]);
+                    currentCombination.RemoveAt(currentCombination.Count - 1);
                 }
             }
         }

@@ -7,7 +7,8 @@ namespace Data_Structures___Algorithms
     {
         static void Main(string[] args)
         {
-            //int result = StringSolution.LengthOfLongestSubstring("abcabcbb");
+            // int result = StringSolution.LengthOfLongestSubstring("abcabcbb");
+            // string result = new StringSolution().LongestPalindrome("babad");
             // TreeNode test = new TreeNode(5);
             // test.left = new TreeNode(2);
             // test.right = new TreeNode(13);
@@ -32,11 +33,16 @@ namespace Data_Structures___Algorithms
             // ArraySolution.Merge(Array1, 3, Array2, 3);
             // string[] logs = { "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo" };
             // StringSolution.ReorderLogFiles(logs);
-            // int[] arrayNums = { -1,0,1,2,-1,-4 };
-            // IList<IList<int>> result = CombinationSum.ThreeSum(arrayNums);
+            int[] arrayNums = { 2,3,5 };
+            IList<IList<int>> result = new CombinationSum().CombinationSum2(arrayNums, 8);
             // bool result = (new BitManipulation()).IsPowerOfTwo(33);
             // int result = (new ArraySolution()).SingleNumber2(new int[] { 4, 1, 2, 1, 2 });
-            int result = (new StringSolution()).FirstUniqueChar("cc");
+            // int result = (new StringSolution()).FirstUniqueChar("cc");
+            // ListNode L1 = LinkedList.ListNodeFromArray(new int[] { 2, 4, 3 });
+            // ListNode L2 = LinkedList.ListNodeFromArray(new int[] { 5, 6, 4 });
+            // ListNode node = (new LinkedList()).AddTwoNumbers(L1, L2);
+            // int result = new ArraySolution().RemoveElement(new int[] { 0,1,2,2,3,0,4,2 }, 2);
+
         }
     }
 }

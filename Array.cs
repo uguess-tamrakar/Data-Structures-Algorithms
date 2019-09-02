@@ -1,11 +1,72 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
-        public int SingleNumber(int[] nums) {
+        public IList<IList<int>> Subsets(int[] nums)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+            GetSubset(0, nums, new List<int>(), result);
+            return result;
+        }
+
+        private void GetSubset(int index, int[] nums, List<int> current, IList<IList<int>> result)
+        {
+            result.Add(new List<int>(current));
+            for (int i = index; i < nums.Length; i++)
+            {
+                current.Add(nums[i]);
+                GetSubset(i + 1, nums, current, result);
+                current.RemoveAt(current.Count - 1);
+            }
+        }
+
+        // K Closest Points to Origin
+        public int[][] KClosest(int[][] points, int K)
+        {
+            int[] dists = new int[points.Length];
+            for (int i = 0; i < points.Length; i++)
+            {
+                dists[i] = distance(points[i]);
+            }
+            Array.Sort(dists);
+
+            int distK = dists[K - 1];
+            int[][] result = new int[K][];
+            int index = 0;
+
+            for (int i = 0; i < points.Length; ++i)
+            {
+                if (distance(points[i]) <= distK) result[index++] = points[i];
+            }
+
+            return result;
+        }
+
+        private int distance(int[] point) {
+            return point[0] * point[0] + point[1] * point[1];
+        }
+
+        // remove the given value - val from the nums array
+        // val could be appended to the end of given array
+        public int RemoveElement(int[] nums, int val)
+        {
+            int index = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] != val)
+                {
+                    nums[index++] = nums[i];
+                }
+            }
+            return index;
+        }
+
+        public int SingleNumber(int[] nums)
+        {
             if (nums.Length < 1) return 0;
             List<int> list = new List<int>();
             foreach (int num in nums)
@@ -89,7 +150,8 @@ namespace Data_Structures___Algorithms
             }
         }
 
-        public static bool Exist(char[][] board, string word) {
+        public static bool Exist(char[][] board, string word)
+        {
             for (int i = 0; i < board.Length; i++)
             {
                 for (int j = 0; j < board[i].Length; j++)
