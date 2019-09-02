@@ -30,6 +30,7 @@ namespace Data_Structures___Algorithms
 
             return result;
         }
+        
         private static void VisitAllAdjacentLands(char[][] grid, int x, int y)
         {
             if (x < 0 || y < 0 || x >= grid.Length || y >=grid[x].Length || grid[x][y] == '0' || visitedLands[x, y]) return;

@@ -103,7 +103,7 @@ namespace Data_Structures___Algorithms
             return result;
         }
 
-        private static void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
+        private void BackTrack(int[] candidates, IList<IList<int>> result, List<int> currentCombination, int startIndex, int target)
         {
             // if target is 0, we found our combination
             if (target == 0)
@@ -134,7 +134,7 @@ namespace Data_Structures___Algorithms
             }
         }
 
-        public static int CombinationSum4(int[] nums, int target)
+        public int CombinationSum4(int[] nums, int target)
         {
             if (nums.Length == 0 || target == 0) return 0;
             System.Array.Sort(nums);
@@ -163,43 +163,71 @@ namespace Data_Structures___Algorithms
             return dp.Last();
         }
 
-        public static IList<IList<int>> ThreeSum(int[] nums)
+        public IList<IList<int>> ThreeSum(int[] nums)
         {
             IList<IList<int>> result = new List<IList<int>>();
 
             if (nums.Length >= 3)
             {
                 Array.Sort(nums);
-                FindCombination(nums, result, new List<int>(), 0);
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (i != 0 && nums[i - 1] == nums[i]) continue;
+                    int left = i + 1;
+                    int right = nums.Length - 1;
+                    int num = nums[i];
+
+                    while (left < right)
+                    {
+                        int sum = (nums[left] + num + nums[right]);
+                        if (sum == 0)
+                        {
+                            result.Add(new List<int>() { nums[left], num, nums[right] });
+                            while (left < right && nums[left] == nums[left + 1]) left++;
+                            while (left < right && nums[right] == nums[right - 1]) right--;
+                            left++;
+                            right--;
+                        }
+                        else if (sum < 0) left++;
+                        else right--;
+                    }
+                }
+
+                if (result == null) result.Add(new List<int>());
             }
 
             return result;
         }
 
-        private static void FindCombination(int[] nums, IList<IList<int>> result, List<int> currentCombination, int index)
+        private void FindCombination(int[] nums, IList<IList<int>> result, List<int> currentCombination, int index)
         {
+             // if current combination count is 3 and...
+            if (currentCombination.Count == 3)
+            {
+                // sum is zero then add to result
+                if (currentCombination[0] + currentCombination[1] + currentCombination[2] == 0) result.Add(new List<int>(currentCombination));
+                return;
+            }
+
+            // loop through nums and add to current combination 
             for (int i = index; i < nums.Length; i++)
             {
-                if (i != index && currentCombination.Count == 3)
+                if (i == index || nums[i] != nums[i - 1])
                 {
+                    // add till the total until total is 3
                     if (currentCombination.Count < 3)
                     {
                         currentCombination.Add(nums[i]);
                         FindCombination(nums, result, currentCombination, i + 1);
                         currentCombination.RemoveAt(currentCombination.Count - 1);
                     }
+                    // else break
                     else
                     {
-
-                        int sum = currentCombination[0] + currentCombination[1] + currentCombination[2];
-                        if (sum == 0)
-                        {
-                            result.Add(new List<int>(currentCombination));
-                            break;
-                        }
+                        break;
                     }
                 }
-                else break;
             }
         }
     }

@@ -32,8 +32,10 @@ namespace Data_Structures___Algorithms
             // ArraySolution.Merge(Array1, 3, Array2, 3);
             // string[] logs = { "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo" };
             // StringSolution.ReorderLogFiles(logs);
-            int[] arrayNums = { -1, 0, 1, 2, -1, -4 };
-            IList<IList<int>> result = CombinationSum.ThreeSum(arrayNums);
+            // int[] arrayNums = { -1,0,1,2,-1,-4 };
+            // IList<IList<int>> result = CombinationSum.ThreeSum(arrayNums);
+            // bool result = (new BitManipulation()).IsPowerOfTwo(33);
+            int result = (new ArraySolution()).SingleNumber2(new int[] { 4, 1, 2, 1, 2 });
         }
     }
 }

@@ -5,6 +5,116 @@ namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public int SingleNumber(int[] nums) {
+            if (nums.Length < 1) return 0;
+            List<int> list = new List<int>();
+            foreach (int num in nums)
+            {
+                if (list.Contains(num)) list.Remove(num);
+                else list.Add(num);
+            }
+
+            return list[0];
+        }
+
+        public int SingleNumber2(int[] nums)
+        {
+            int result = 0;
+
+            if (nums.Length == 1) result = nums[0];
+            else if (nums.Length > 1)
+            {
+                int singleIndex = -1;
+                Array.Sort(nums);
+                for (int i = 0; i < nums.Length - 1; i++)
+                {
+                    if (nums[i] == nums[i + 1]) i++;
+                    else
+                    {
+                        singleIndex = i;
+                        break;
+                    }
+                }
+
+                if (singleIndex == -1) singleIndex = nums.Length - 1;
+
+                result = nums[singleIndex];
+            }
+
+            return result;
+        }
+
+        public void SetZeroes(int[][] matrix)
+        {
+            bool isColumn = false;
+            int rowCount = matrix.Length;
+            int columnCount = matrix[0].Length;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                if (matrix[i][0] == 0) isColumn = true;
+
+                for (int j = 1; j < columnCount; j++)
+                {
+                    if (matrix[i][j] == 0)
+                    {
+                        matrix[i][0] = 0;
+                        matrix[0][j] = 0;
+                    }
+                }
+            }
+
+            for (int i = 1; i < rowCount; i++)
+            {
+                for (int j = 1; j < columnCount; j++)
+                {
+                    if (matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j] = 0;
+                }
+            }
+
+            if (matrix[0][0] == 0)
+            {
+                for (int j = 0; j < columnCount; j++)
+                {
+                    matrix[0][j] = 0;
+                }
+            }
+
+            if (isColumn)
+            {
+                for (int i = 0; i < rowCount; i++)
+                {
+                    matrix[i][0] = 0;
+                }
+            }
+        }
+
+        public static bool Exist(char[][] board, string word) {
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[i].Length; j++)
+                {
+                    if (board[i][j] == word[0] && Dfs(board, i, j, 0, word)) return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool Dfs(char[][] board, int i, int j, int count, string word)
+        {
+            if (count == word.Length) return true;
+            if (i < 0 || i >= board.Length || j < 0 || j >= board[i].Length || board[i][j] != word[count]) return false;
+            char temp = board[i][j];
+            board[i][j] = ' ';
+            bool found = Dfs(board, i + 1, j, count + 1, word)
+            || Dfs(board, i - 1, j, count + 1, word)
+            || Dfs(board, i, j + 1, count + 1, word)
+            || Dfs(board, i, j - 1, count + 1, word);
+            board[i][j] = temp;
+            return found;
+        }
+
         public static void Merge(int[] nums1, int m, int[] nums2, int n)
         {
             if (n > 0)
