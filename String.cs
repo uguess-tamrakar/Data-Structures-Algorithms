@@ -6,6 +6,18 @@ namespace Data_Structures___Algorithms
 {
     public class StringSolution
     {
+        public int FirstUniqueChar(String s) {
+            if (string.IsNullOrEmpty(s)) return -1;
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!dict.ContainsKey(s[i])) dict.Add(s[i], i);
+                else dict[s[i]] = -1;
+            }
+
+            return dict.First(pair => pair.Value != -1).Value;
+        }
+
         public static int LengthOfLongestSubstring(string s)
         {
             int result = 0;

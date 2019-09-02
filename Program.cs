@@ -35,7 +35,8 @@ namespace Data_Structures___Algorithms
             // int[] arrayNums = { -1,0,1,2,-1,-4 };
             // IList<IList<int>> result = CombinationSum.ThreeSum(arrayNums);
             // bool result = (new BitManipulation()).IsPowerOfTwo(33);
-            int result = (new ArraySolution()).SingleNumber2(new int[] { 4, 1, 2, 1, 2 });
+            // int result = (new ArraySolution()).SingleNumber2(new int[] { 4, 1, 2, 1, 2 });
+            int result = (new StringSolution()).FirstUniqueChar("cc");
         }
     }
 }
