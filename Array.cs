@@ -1,11 +1,122 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public int[] TwoSum(int[] numbers, int target)
+        {
+            int[] result = new int[2];
+
+            Dictionary<int, int> dict = new Dictionary<int, int>(numbers.Length);
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                int complement = target - numbers[i];
+                if (dict.ContainsKey(complement))
+                {
+                    result[0] = ++dict[complement];
+                    result[1] = ++i;
+                    break;
+                }
+                dict.TryAdd(numbers[i], i);
+            }
+
+            return result;
+        }
+
+        public int FindTreasureIsland(char[][] island)
+        {
+            if (island == null || island.Length == 0) return 0;
+
+            int[] treasureIsland = TreasureIsland(island);
+            if (treasureIsland == null) return 0;
+            return FindShortestRoute(island, treasureIsland);
+        }
+
+        private int FindShortestRoute(char[][] input, int[] treasureisland)
+        {
+            int route = 0;
+            int row = 0;
+            int col = 0;
+            int targetX = treasureisland[0];
+            int targetY = treasureisland[1];
+
+            while (row >= 0 && row < input.Length && col >= 0 && col < input[row].Length)
+            {
+                if (row == targetX && col == targetY) break;
+                else
+                {
+                    if (row < targetX && input[row + 1][col] != 'D' && row + 1 <= input.Length - 1)
+                    {
+                        row++;
+                        route++;
+                    }
+                    else if (col < targetY && input[row][col + 1] != 'D' && col + 1 <= input[row].Length - 1)
+                    {
+                        col++;
+                        route++;
+                    }
+                    else if (row > targetX && input[row - 1][col] != 'D' && row - 1 >= 0)
+                    {
+                        row--;
+                        route++;
+                    }
+                    else if (col > targetY && input[row][col - 1] != 'D' && col - 1 >= 0)
+                    {
+                        col--;
+                        route++;
+                    }
+                    else
+                    {
+                        col++;
+                        route++;
+                    }
+                }
+            }
+
+            return route;
+        }
+
+        private int[] TreasureIsland(char[][] island)
+        {
+            int[] result = new int[2];
+            for (int i = 0; i < island.Length; i++)
+            {
+                for (int j = 0; j < island[i].Length; j++)
+                {
+                    if (island[i][j] == 'X') {
+                        result[0] = i;
+                        result[1] = j;
+                    }
+                }
+            }
+            return result;
+        }
+
+        // Find an element from a and an element from b such that the sum
+        // of their values is less than or equal to target and as closet as possible to target.
+        public IList<IList<int>> GetSumClosestToTarget(IList<IList<int>> a, IList<IList<int>> b, int target)
+        {
+            IList<IList<int>> result = new List<IList<int>>();
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i = 0; i < a.Count; i++)
+            {
+                dict.Add(a[i][0], a[i][1]);
+            }
+
+            //int closestSum = 0;
+            for (int j = 0; j < b.Count; j++)
+            {
+                int compliment = target - b[j][1];
+            }
+
+            return result;
+        }
+
         public IList<IList<int>> Subsets(int[] nums)
         {
             IList<IList<int>> result = new List<IList<int>>();

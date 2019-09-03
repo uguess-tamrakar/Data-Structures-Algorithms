@@ -4,6 +4,23 @@ namespace Data_Structures___Algorithms
 {
     public class LinkedList
     {
+        public ListNode RemoveZeroSumSublists(ListNode head)
+        {
+            if (head == null) return null;
+
+            int sum = 0;
+            ListNode current = head;
+            while (current != null)
+            {
+                sum += current.val;
+                if (sum == 0) return RemoveZeroSumSublists(current.next);
+                current = current.next;
+            }
+
+            head.next = RemoveZeroSumSublists(head.next);
+            return head;
+        }
+
         // Add two reversed linked lists
         public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
         {
