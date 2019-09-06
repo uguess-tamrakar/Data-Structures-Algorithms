@@ -7,6 +7,26 @@ namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public List<List<int>> optimalUtilization(int deviceCapacity, List<List<int>> f, List<List<int>> b)
+        {
+            f.Sort();
+            b.Sort();
+
+            List<List<int>> result = new List<List<int>>();
+
+            f = f.OrderBy(app => app[1]).ToList();
+
+            return result;
+        }
+
+        public List<int> IDsOfSongs(int rideDuration, List<int> songDurations)
+        {
+            List<int> result = new List<int>(2);
+
+
+            return result;
+        }
+
         public int[] TwoSum(int[] numbers, int target)
         {
             int[] result = new int[2];
@@ -87,7 +107,8 @@ namespace Data_Structures___Algorithms
             {
                 for (int j = 0; j < island[i].Length; j++)
                 {
-                    if (island[i][j] == 'X') {
+                    if (island[i][j] == 'X')
+                    {
                         result[0] = i;
                         result[1] = j;
                     }
@@ -157,7 +178,8 @@ namespace Data_Structures___Algorithms
             return result;
         }
 
-        private int distance(int[] point) {
+        private int distance(int[] point)
+        {
             return point[0] * point[0] + point[1] * point[1];
         }
 
