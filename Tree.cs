@@ -122,12 +122,19 @@ namespace Data_Structures___Algorithms
             return true;
         }
 
+        public int GetHeight(TreeNode root) {
+            int result = 0;
+
+
+            return result;
+        }
+
         public static int MaxDepth(TreeNode root)
         {
             int result = 0;
             if (root != null)
             {
-                result += 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
+                result = 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
             }
             return result;
         }

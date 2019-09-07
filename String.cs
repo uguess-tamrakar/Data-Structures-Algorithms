@@ -6,6 +6,29 @@ namespace Data_Structures___Algorithms
 {
     public class StringSolution
     {
+        public bool IsPalindrome(string s)
+        {
+            bool result = true;
+            Stack<char> Stack = new Stack<char>();
+            Queue<char> Queue = new Queue<char>();
+
+            foreach (char c in s)
+            {
+                Stack.Push(c);
+                Queue.Enqueue(c);
+            }
+
+            for (int i = 0; i < s.Length / 2; i++)
+            {
+                if (Stack.Pop() != Queue.Dequeue()) {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         public string LongestPalindrome(string s) 
         {
             if (string.IsNullOrEmpty(s)) return string.Empty;

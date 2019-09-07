@@ -52,7 +52,16 @@ namespace Data_Structures___Algorithms
             // Island[2] = new char[4] { 'O', 'O', 'O', 'O' };
             // Island[3] = new char[4] { 'X', 'D', 'D', 'O' };
             // int result = new ArraySolution().FindTreasureIsland(Island);
-            int[] result = new ArraySolution().TwoSum(new int[] { 2, 7, 11, 15 }, 18);
+            // int[] result = new ArraySolution().TwoSum(new int[] { 2, 7, 11, 15 }, 18);
+            // new StackSolution().Test();
+            int[] array = { 3, 2, 5, 1, 4, 6, 7 };
+            TreeNode Root = Tree.ConvertArrayToTree(array);
+            int result = Tree.MaxDepth(Root);
+        }
+
+        private static int Power(int x, int y)
+        {
+            return (int)Math.Pow(x, y);
         }
     }
 }
