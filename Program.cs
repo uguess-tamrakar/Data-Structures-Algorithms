@@ -54,9 +54,10 @@ namespace Data_Structures___Algorithms
             // int result = new ArraySolution().FindTreasureIsland(Island);
             // int[] result = new ArraySolution().TwoSum(new int[] { 2, 7, 11, 15 }, 18);
             // new StackSolution().Test();
-            int[] array = { 3, 2, 5, 1, 4, 6, 7 };
-            TreeNode Root = Tree.ConvertArrayToTree(array);
-            int result = Tree.MaxDepth(Root);
+            // int[] array = { 3, 2, 5, 1, 4, 6, 7 };
+            // TreeNode Root = Tree.ConvertArrayToTree(array);
+            // int result = Tree.MaxDepth(Root);
+            int[] result = new ArraySolution().BubbleSort(new int[] { 4, 1, 2, 3 });
         }
 
         private static int Power(int x, int y)

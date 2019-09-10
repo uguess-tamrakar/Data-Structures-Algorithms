@@ -7,6 +7,24 @@ namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public int[] BubbleSort(int[] arr)
+        {
+            int result = 0;
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                for (int j = 0; j < arr.Length - 1; j++)
+                {
+                    if (arr[j] > arr[j + 1])
+                    {
+                        int temp = arr[j + 1];
+                        arr[j + 1] = arr[j];
+                        arr[j] = temp;
+                        result++;
+                    }
+                }
+            }
+            return arr;
+        }
         public List<List<int>> optimalUtilization(int deviceCapacity, List<List<int>> f, List<List<int>> b)
         {
             f.Sort();
