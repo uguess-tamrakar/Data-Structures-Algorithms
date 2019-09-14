@@ -57,7 +57,9 @@ namespace Data_Structures___Algorithms
             // int[] array = { 3, 2, 5, 1, 4, 6, 7 };
             // TreeNode Root = Tree.ConvertArrayToTree(array);
             // int result = Tree.MaxDepth(Root);
-            int[] result = new ArraySolution().BubbleSort(new int[] { 4, 1, 2, 3 });
+            // int[] result = new ArraySolution().BubbleSort(new int[] { 4, 1, 2, 3 });
+            // bool IsPalindrome = 321123.IsPalindrome();
+            int Reverse = -1111111113.Reverse();
         }
 
         private static int Power(int x, int y)
