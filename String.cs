@@ -46,12 +46,12 @@ namespace Data_Structures___Algorithms
                 }
             }
 
-            return s.Substring(start, end + 1);
+            return s.Substring(start, end - start + 1);
         }
 
         private int ExpandFromCenter(string s, int left, int right)
         {
-            while (left >=0 && right < s.Length && s[left] == s[right]){
+            while (left > -1 && right < s.Length && s[left] == s[right]){
                 left--;
                 right++;
             }

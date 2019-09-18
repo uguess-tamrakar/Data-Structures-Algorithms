@@ -7,7 +7,7 @@ namespace Data_Structures___Algorithms
     {
         static void Main(string[] args)
         {
-            // int result = StringSolution.LengthOfLongestSubstring("abcabcbb");
+            // int result = StringSolution.LengthOfLongestSubstring("abba");
             // string result = new StringSolution().LongestPalindrome("babad");
             // TreeNode test = new TreeNode(5);
             // test.left = new TreeNode(2);
@@ -59,7 +59,11 @@ namespace Data_Structures___Algorithms
             // int result = Tree.MaxDepth(Root);
             // int[] result = new ArraySolution().BubbleSort(new int[] { 4, 1, 2, 3 });
             // bool IsPalindrome = 321123.IsPalindrome();
-            int Reverse = -1111111113.Reverse();
+            // int Reverse = -1111111113.Reverse();
+            // int[] Array = { 0,0,0,0};
+            // IList<IList<int>> Result =  Array.ThreeSumToZero();
+            int[] Array = { 1, 2, 3, 4, 5 };
+            bool result = Array.HasIncreasingTriplet();
         }
 
         private static int Power(int x, int y)

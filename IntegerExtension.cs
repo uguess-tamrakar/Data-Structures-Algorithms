@@ -2,17 +2,17 @@ using System;
 
 namespace Data_Structures___Algorithms
 {
-    public static class IntegerExtension
+    public static class IntegerExtensions
     {
         public static int Reverse(this int x) {
-            int result = 0;
+            long result = 0;
             
             while (x != 0) {
                 result = result * 10 + x % 10;
                 x /= 10;
             }
-            
-            return result;
+
+            return (result < int.MinValue || result > int.MaxValue) ? 0 : (int)result;
         }
 
         public static bool IsPalindrome(this int x)
