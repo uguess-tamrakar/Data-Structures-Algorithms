@@ -62,8 +62,22 @@ namespace Data_Structures___Algorithms
             // int Reverse = -1111111113.Reverse();
             // int[] Array = { 0,0,0,0};
             // IList<IList<int>> Result =  Array.ThreeSumToZero();
-            int[] Array = { 1, 2, 3, 4, 5 };
-            bool result = Array.HasIncreasingTriplet();
+            // int[] Array = { 1, 2, 3, 4, 5 };
+            // bool result = Array.HasIncreasingTriplet();
+            // TimeMap timeMap = new TimeMap();
+            // timeMap.Set("love", "high", 10);
+            // timeMap.Set("love", "mid", 12);
+            // timeMap.Set("love", "low", 20);
+            // string test = timeMap.Get("love", 5);
+            // string test1 = timeMap.Get("love", 10);
+            // string test2 = timeMap.Get("love", 15);
+            // string test3 = timeMap.Get("love", 20);
+            // string test4 = timeMap.Get("love", 25);
+            int[][] Image = {
+                new int[] {0, 0, 0},
+                new int[] {0, 1, 1}
+            };
+            int[][] modified = new DepthFirstSearch().FloodFill(Image, 1, 1, 1);
         }
 
         private static int Power(int x, int y)

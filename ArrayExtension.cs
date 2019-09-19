@@ -7,18 +7,20 @@ namespace Data_Structures___Algorithms
     public static class ArrayExtensions
     {
         public static bool HasIncreasingTriplet(this int[] nums) {
-            bool result = false;
-
+            // To store smallest one of triplet
             int smallest = int.MaxValue;
+            // To store smaller one of triplet
             int smaller = int.MaxValue;
+
+            // loop to store smallest and smaller and if next one is found then return true
             foreach (int num in nums)
             {
                 if (num <= smallest) smallest = num;
                 else if (num < smaller) smaller = num;
-                else if (num > smaller) result = true;
+                else if (num > smaller) return true;
             }
 
-            return result;
+            return false;
         }
 
         public static IList<IList<int>> ThreeSumToZero(this int[] nums) {
