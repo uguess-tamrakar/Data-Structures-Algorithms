@@ -9,7 +9,7 @@ namespace Data_Structures___Algorithms
         {
             _Color = image[sr][sc];
             _NewColor = newColor;
-            dfsFoodFill(sr, sc, image);
+            if (_Color != _NewColor) dfsFoodFill(sr, sc, image);
             return image;
         }
 
