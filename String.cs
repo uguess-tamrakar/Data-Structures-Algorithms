@@ -6,6 +6,54 @@ namespace Data_Structures___Algorithms
 {
     public class StringSolution
     {
+        public int KSimilarity(string A, string B)
+        {
+            int result = 0;
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (A[i] != B[i])
+                {
+                    int index = FindIndexToSwapAt(i, A, B);
+                    A = Swap(A, i, index);
+                    result++;
+                }
+            }
+
+            return result;
+        }
+
+        private int FindIndexToSwapAt(int currentIndex, string s1, string s2)
+        {
+            int result = currentIndex;
+
+            for (int i = currentIndex + 1; i < s1.Length; i++)
+            {
+                // Find common index where we can just switch
+                if (s1[i] == s2[currentIndex] && s2[i] == s1[currentIndex])
+                {
+                    result = i;
+                    break;
+                }
+                // Find index where A and B char do not match 
+                else if (s1[i] != s2[i] && s2[currentIndex] == s1[i])
+                {
+                    result = i;
+                }
+            }
+
+            return result;
+        }
+
+        private string Swap(string A, int x, int y)
+        {
+            char[] chars = A.ToCharArray();
+            char temp = chars[x];
+            chars[x] = chars[y];
+            chars[y] = temp;
+            return new string(chars);
+        }        
+
         public bool IsPalindrome(string s)
         {
             bool result = true;

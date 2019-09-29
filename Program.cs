@@ -73,11 +73,17 @@ namespace Data_Structures___Algorithms
             // string test2 = timeMap.Get("love", 15);
             // string test3 = timeMap.Get("love", 20);
             // string test4 = timeMap.Get("love", 25);
-            int[][] Image = {
-                new int[] {0, 0, 0},
-                new int[] {0, 1, 1}
-            };
-            int[][] modified = new DepthFirstSearch().FloodFill(Image, 1, 1, 1);
+            // int[][] Image = {
+            //     new int[] {0, 0, 0},
+            //     new int[] {0, 1, 1}
+            // };
+            // int[][] modified = new DepthFirstSearch().FloodFill(Image, 1, 1, 1);
+            // int[] Array = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+            // int result = new DynamicProgramming().TrapUsingPointers(Array);
+            //             int result = new StringSolution().KSimilarity(
+            //                                                         "aabbccddee",
+            // "cbeddebaac");
+            IList<IList<string>> result = new BreadthFirstSearch().FindLadders("hit", "cog", new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
         }
 
         private static int Power(int x, int y)

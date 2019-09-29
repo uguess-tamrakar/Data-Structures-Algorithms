@@ -5,6 +5,19 @@ namespace Data_Structures___Algorithms
 {
     public class Tree
     {
+        public TreeNode FindLowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+        {
+            if (root == null) return null;
+            if (root == p || root == q) return root;
+
+            TreeNode left = FindLowestCommonAncestor(root.left, p, q);
+            TreeNode right = FindLowestCommonAncestor(root.right, p, q);
+
+            if (left != null && right != null) return root;
+            if (left != null) return left;
+            else return right;
+        }
+
         public IList<IList<int>> PathSum(TreeNode root, int sum)
         {
             IList<IList<int>> result = new List<IList<int>>();
@@ -17,7 +30,8 @@ namespace Data_Structures___Algorithms
             if (root == null) return;
 
             current.Add(root.val);
-            if (root.val == remaining && root.left == null && root.right == null){
+            if (root.val == remaining && root.left == null && root.right == null)
+            {
                 result.Add(current);
                 return;
             }
@@ -72,7 +86,7 @@ namespace Data_Structures___Algorithms
         private static int sum = 0;
         public static TreeNode ConvertBST(TreeNode root)
         {
-            if (root != null) 
+            if (root != null)
             {
                 ConvertBST(root.right);
                 sum += root.val;
@@ -122,7 +136,8 @@ namespace Data_Structures___Algorithms
             return true;
         }
 
-        public int GetHeight(TreeNode root) {
+        public int GetHeight(TreeNode root)
+        {
             int result = 0;
 
 
@@ -215,7 +230,8 @@ namespace Data_Structures___Algorithms
 
     }
 
-    public class TreeNode {
+    public class TreeNode
+    {
         public int val;
         public TreeNode left;
         public TreeNode right;

@@ -1,3 +1,7 @@
 {
-    "workbench.octiconsUpdate.enabled": true
+    "workbench.octiconsUpdate.enabled": true,
+    "debug.console.fontSize": 12,
+    "editor.fontSize": 13,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace"
 }

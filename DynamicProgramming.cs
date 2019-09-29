@@ -6,6 +6,71 @@ namespace Data_Structures___Algorithms
 {
     public class DynamicProgramming
     {
+        public int TrapUsingPointers(int[] height)
+        {
+            int result = 0;
+
+            if (height != null && height.Length > 0)
+            {
+                int leftIndex = 0;
+                int rightIndex = height.Length - 1;
+                int leftMax = 0;
+                int rightMax = 0;
+
+                while (leftIndex < rightIndex)
+                {
+                    if (height[leftIndex] < height[rightIndex])
+                    {
+                        if (height[leftIndex] >= leftMax) leftMax = height[leftIndex];
+                        else result += leftMax - height[leftIndex];
+                        leftIndex++;
+                    }
+                    else
+                    {
+                        if (height[rightIndex] >= rightMax) rightMax = height[rightIndex];
+                        else result += rightMax - height[rightIndex];
+                        rightIndex--;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public int Trap(int[] height)
+        {
+            int result = 0;
+
+            if (height != null && height.Length > 0)
+            {
+                // calculate the maximum on left side
+                int[] leftMax = new int[height.Length];
+                leftMax[0] = height[0];
+
+                for (int i = 1; i < leftMax.Length; i++)
+                {
+                    leftMax[i] = Math.Max(height[i], leftMax[i - 1]);
+                }
+
+                // calculate the maximum on right side
+                int[] rightMax = new int[height.Length];
+                rightMax[rightMax.Length - 1] = height[height.Length - 1];
+
+                for (int i = rightMax.Length - 2; i >= 0; i--)
+                {
+                    rightMax[i] = Math.Max(height[i], rightMax[i + 1]);
+                }
+
+                // minimum of left and right - current will gives us a depth
+                for (int i = 1; i < height.Length - 1; i++)
+                {
+                    result += Math.Min(leftMax[i], rightMax[i]) - height[i];
+                }
+            }
+
+            return result;
+        }
+
         private static bool[,] visitedLands;
 
         public static int NumIslands(char[][] grid) {
