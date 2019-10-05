@@ -7,6 +7,41 @@ namespace Data_Structures___Algorithms
 {
     public class ArraySolution
     {
+        public int[] SearchRange(int[] nums, int target)
+        {
+            int[] result = new int[2];
+            int left = 0;
+            int right = nums.Length - 1;
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (nums[mid] == target)
+                {
+                    int leftPos = mid;
+                    while (leftPos > -1 && nums[leftPos] == target)
+                    {
+                        leftPos--;
+                    }
+                    result[0] = leftPos + 1;
+
+                    int rightPos = mid;
+                    while (rightPos < nums.Length && nums[rightPos] == target)
+                    {
+                        rightPos++;
+                    }
+                    result[1] = rightPos - 1;
+
+                    return result;
+                }
+                else if (nums[mid] < target) left = mid + 1;
+                else if (nums[mid] > target) right = mid - 1;
+            }
+
+            result[0] = -1;
+            result[1] = -1;
+            return result;
+        }
+
         public int[] BubbleSort(int[] arr)
         {
             int result = 0;

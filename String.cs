@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +7,64 @@ namespace Data_Structures___Algorithms
 {
     public class StringSolution
     {
+        public string AddStringsFaster(string num1, string num2)
+        {
+            string result = string.Empty;
+
+            int index1 = num1.Length - 1;
+            int index2 = num2.Length - 1;
+            int carry = 0;
+
+            while (index1 > -1 || index2 > -1 || carry > 0) {
+                int numX = 0;
+                int numY = 0;
+                
+                if (index1 > -1) {
+                    numX = num1[index1] - '0';
+                    index1--;
+                }
+
+                if (index2 > -1) {
+                    numY = num2[index2] - '0';
+                    index2--;
+                }
+
+                result = ((numX + numY + carry) % 10) + result;
+                carry = ((numX + numY + carry) / 10);
+            }
+
+            return result;
+        }
+
+        public string AddStrings(string num1, string num2)
+        {
+            string result = string.Empty;
+
+            int index1 = num1.Length - 1;
+            int index2 = num2.Length - 1;
+            int carry = 0;
+
+            while (index1 > -1 || index2 > -1 || carry > 0) {
+                int numX = 0;
+                int numY = 0;
+                
+                if (index1 > -1) {
+                    numX = num1[index1] - '0';
+                    index1--;
+                }
+
+                if (index2 > -1) {
+                    numY = num2[index2] - '0';
+                    index2--;
+                }
+
+                result += ((numX + numY + carry) % 10).ToString();
+                carry = ((numX + numY + carry) / 10);
+            }
+
+            return new string(result.Reverse().ToArray());
+        }
+
         public int KSimilarity(string A, string B)
         {
             int result = 0;
@@ -144,42 +203,67 @@ namespace Data_Structures___Algorithms
 
         public static int LengthOfLongestSubstring(string s)
         {
-            int result = 0;
+            int leftPointer = 0;
+            int rightPointer = 0;
+            int max = 0;
+            HashSet<char> uniqueChars = new HashSet<char>();
 
-            Dictionary<char, int> dict = new Dictionary<char, int>();
-
-            for (int i = 0, j = 0; i < s.Length; i++)
+            while (rightPointer < s.Length)
             {
-                if (dict.ContainsKey(s[i])) j = Math.Max(dict[s[i]], j);
-                result = Math.Max(result, i - j + 1);
-                if (!dict.ContainsKey(s[i])) dict.Add(s[i], i + 1);
-                else dict[s[i]] = i + 1;
+                if (uniqueChars.Contains(s[rightPointer]))
+                {
+                    uniqueChars.Remove(s[leftPointer]);
+                    leftPointer++;
+                }
+                else
+                {
+                    uniqueChars.Add(s[rightPointer]);
+                    rightPointer++;
+                    max = Math.Max(max, uniqueChars.Count);
+                }
             }
 
-            return result;
+            return max;
         }
 
         public static string[] ReorderLogFiles(string[] logs)
         {
-            if (logs == null) return null;
-            else if (logs.Length == 0) return new string[0];
+            // if (logs == null) return null;
+            // else if (logs.Length == 0) return new string[0];
 
-            List<string> result = new List<string>();
+            // List<string> result = new List<string>();
 
+            // List<string> letterLogs = new List<string>();
+            // List<string> digitLogs = new List<string>();
+            // for (int i = 0; i < logs.Length; i++)
+            // {
+            //     string afterIdentifier = logs[i].Split(' ')[1];
+            //     if (char.IsDigit(afterIdentifier[0])) digitLogs.Add(logs[i]);
+            //     else letterLogs.Add(logs[i]);
+            // }
+
+            // letterLogs = letterLogs.OrderBy(log => log).ToList();
+            // result = letterLogs.OrderBy(log => log.Substring(log.IndexOf(' ') + 1)).ToList();
+            // result.AddRange(digitLogs);
+
+            // return result.ToArray();
             List<string> letterLogs = new List<string>();
             List<string> digitLogs = new List<string>();
             for (int i = 0; i < logs.Length; i++)
             {
-                string afterIdentifier = logs[i].Split(' ')[1];
-                if (char.IsDigit(afterIdentifier[0])) digitLogs.Add(logs[i]);
-                else letterLogs.Add(logs[i]);
+                if (char.IsLetter(logs[i].Split(" ")[1][0])) letterLogs.Add(logs[i]);
+                else digitLogs.Add(logs[i]);
             }
+            
+            Array.Sort(letterLogs.ToArray());
+            Array.Sort(letterLogs.ToArray(), CompareStrings);
+            letterLogs.AddRange(digitLogs);
+            return letterLogs.ToArray();
+        }
 
-            letterLogs = letterLogs.OrderBy(log => log).ToList();
-            result = letterLogs.OrderBy(log => log.Substring(log.IndexOf(' ') + 1)).ToList();
-            result.AddRange(digitLogs);
-
-            return result.ToArray();
+        private static int CompareStrings(string s1, string s2)
+        {
+            return new CaseInsensitiveComparer().Compare(s1.Split(" ")[1], s2.Split(" ")[1]);
         }
     }
 }

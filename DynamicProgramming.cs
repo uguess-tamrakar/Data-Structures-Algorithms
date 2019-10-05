@@ -181,35 +181,9 @@ namespace Data_Structures___Algorithms
 
         public static int CoinChange(int[] coins, int amount)
         {
-            int result = 0;
-
-            if (amount > 0)
-            {
-                for (int i = coins.Length - 1; i >= 0; i--)
-                {
-                    if (coins[i] <= amount)
-                    {
-                        result += amount / coins[i];
-                        amount = amount % coins[i];
-                    }
-                }
-
-                // if there is still remaining amount then 
-                // no denomination found to turn remaining into coins
-                if (amount > 0)
-                {
-                    result = -1;
-                }
-            }
-
-            return result;
-        }
-
-        public static int coinChange(int[] coins, int amount)
-        {
-            int max = amount + 1;
+            Array.Sort(coins);
             int[] dp = new int[amount + 1];
-            System.Array.Fill(dp, max);
+            Array.Fill(dp, amount + 1);
 
             dp[0] = 0;
             for (int i = 1; i <= amount; i++)
@@ -220,9 +194,34 @@ namespace Data_Structures___Algorithms
                     {
                         dp[i] = Math.Min(dp[i], dp[i - coins[j]] + 1);
                     }
+                    else break;
                 }
             }
             return dp[amount] > amount ? -1 : dp[amount];
+        }
+
+        public static int CoinChangeRecursively(int[] coins, int amount)
+        {
+            return CoinChange(coins, amount, new int[amount + 1]);
+        }
+
+        private static int CoinChange(int[] coins, int remainder, int[] count) {
+            if (remainder < 0) return -1;
+            if (remainder == 0) return 0;
+            if (count[remainder - 1] != 0) return count[remainder - 1];
+            int min = int.MaxValue;
+
+            foreach (int coin in coins)
+            {
+                int result = CoinChange(coins, remainder - coin, count);
+                if (result >= 0 && result < min)
+                {
+                    min = result + 1;
+                }
+            }
+
+            count[remainder - 1] = min == int.MaxValue ? -1 : min;
+            return count[remainder - 1];
         }
 
         public static int LengthOfLIS(int[] nums)

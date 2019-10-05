@@ -7,7 +7,7 @@ namespace Data_Structures___Algorithms
     {
         static void Main(string[] args)
         {
-            // int result = StringSolution.LengthOfLongestSubstring("abba");
+            // int result = StringSolution.LengthOfLongestSubstring("abbab");
             // string result = new StringSolution().LongestPalindrome("babad");
             // TreeNode test = new TreeNode(5);
             // test.left = new TreeNode(2);
@@ -31,8 +31,8 @@ namespace Data_Structures___Algorithms
             // int[] Array1 = { 1, 2, 3, 0, 0, 0 };
             // int[] Array2 = { 2, 5, 6 };
             // ArraySolution.Merge(Array1, 3, Array2, 3);
-            // string[] logs = { "a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo" };
-            // StringSolution.ReorderLogFiles(logs);
+            string[] logs = { "dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero" };
+            StringSolution.ReorderLogFiles(logs);
             // int[] arrayNums = { 2,3,5 };
             // IList<IList<int>> result = new CombinationSum().CombinationSum2(arrayNums, 8);
             // bool result = (new BitManipulation()).IsPowerOfTwo(33);
@@ -83,7 +83,12 @@ namespace Data_Structures___Algorithms
             //             int result = new StringSolution().KSimilarity(
             //                                                         "aabbccddee",
             // "cbeddebaac");
-            IList<IList<string>> result = new BreadthFirstSearch().FindLadders("hit", "cog", new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
+            // IList<IList<string>> result = new BreadthFirstSearch().FindLadders("hit", "cog", new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
+            // int[] result = new ArraySolution().SearchRange(new int[] { 1, 6,6,6,6,6,6,6 }, 6);
+            // RandomLinkedNode head = new RandomLinkedNode(1, new RandomLinkedNode(2, null, null), new RandomLinkedNode(2, null, null));
+            // RandomLinkedNode result = new RandomLinkedNodeSolution().CopyRandomList(head);
+            // string result = new StringSolution().AddStringsFaster("123", "99999");
+            // int result = DynamicProgramming.CoinChangeRecursively(new int[] { 1, 2, 5 }, 11);
         }
 
         private static int Power(int x, int y)
